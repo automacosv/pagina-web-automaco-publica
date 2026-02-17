@@ -1,4 +1,6 @@
 import { PricingCard } from '../components/home/PricingCard';
+import { Button } from '../components/common/Button';
+import HomeImg from '../assets/home.jpg';
 import { CloudDownload, Mic, TrendingUp, Scale } from 'lucide-react';
 
 const features = [
@@ -34,20 +36,24 @@ export const Home = () => {
     return (
         <div className="w-full">
             {/* Hero Section */}
-            <section className="px-12 py-20 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
-                <div className="md:w-1/2">
-                    <h1 className="text-5xl font-bold text-brand leading-tight mb-6">
-                        Conoce AutomaCo, tu herramienta de organización y descarga de facturas.
+            <section className="px-6 md:px-12 py-20 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
+                <div className="md:w-1/2 mb-10 md:mb-0">
+                    <h1 className="text-5xl font-bold text-dark leading-tight mb-6">
+                        Conoce <span className="text-brand">AutomaCo</span>, tu herramienta de organización.
                     </h1>
-                    <p className="text-gray-500 mb-8 max-w-md">
-                        Optimiza tus procesos administrativos con nuestra tecnología de automatización diseñada para empresas modernas.
+                    <p className="text-gray-500 mb-8 max-w-md text-lg">
+                        Optimiza tus procesos administrativos con nuestra tecnología.
                     </p>
-                    <button className="bg-brand text-white px-8 py-3 rounded-lg font-bold hover:bg-brand-dark shadow-md">
-                        Aprende más
-                    </button>
+
+                    {/* Botón Arreglado */}
+                    <div className="flex gap-4">
+                        <Button onClick={() => console.log('Click!')}>
+                            Aprende más
+                        </Button>
+                    </div>
                 </div>
                 <div className="md:w-1/2 flex justify-end">
-                    <img src="/assets/hero-envelope.png" alt="Ilustración" className="w-full max-w-md" />
+                    <img src={HomeImg} alt="Ilustración AutomaCo" className="w-full max-w-md" />
                 </div>
             </section>
 
@@ -60,36 +66,27 @@ export const Home = () => {
                     <p className="text-gray-400 mb-12">Permítenos apoyarte con lo que nosotros sabemos hacer por ti.</p>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {['Descarga masiva', 'Herramienta de voz', 'Inversión a corto plazo', 'Inversión costo-plazo'].map((feature, i) => (
+                        {features.map((f, i) => (
                             <div key={i} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                                 <div className="bg-gray-100 w-12 h-12 rounded-full mb-6 flex items-center justify-center">
-                                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                                        {features.map((f, i) => (
-                                            <div key={i} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                                <div className="bg-gray-100 w-12 h-12 rounded-full mb-6 flex items-center justify-center">
-                                                    {f.icon}
-                                                </div>
-                                                <h4 className="font-bold mb-3">{f.title}</h4>
-                                                <p className="text-xs text-gray-500 leading-relaxed">{f.description}</p>
-                                            </div>
-                                        ))}
-                                    </div>
+                                    {f.icon}
                                 </div>
-                                <h4 className="font-bold mb-3">{feature}</h4>
-                                <p className="text-xs text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <h4 className="font-bold mb-3">{f.title}</h4>
+                                <p className="text-xs text-gray-500 leading-relaxed">{f.description}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Pricing Section */}
-            <section className="py-24 px-12 text-center">
-                <h2 className="text-4xl font-bold mb-4">El mejor servicio a un precio aún mejor.</h2>
-                <p className="text-gray-500 mb-16">Selecciona el plan que mejor se adapte a tus necesidades.</p>
+            {/* Pricing Section - CORREGIDA */}
+            <section className="py-24 px-12 text-center bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-4xl font-bold mb-4">El mejor servicio a un precio aún mejor.</h2>
+                    <p className="text-gray-500 mb-16">Selecciona el plan que mejor se adapte a tus necesidades.</p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4 py-20">
+                    {/* Eliminado el doble grid innecesario */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {plans.map((plan, index) => (
                             <PricingCard key={index} {...plan} />
                         ))}

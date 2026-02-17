@@ -1,1 +1,14 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+    /* Tu Paleta Oficial */
+    --color-brand: #3ad893; /* Verde Principal */
+    --color-brand-dark: #29A372;
+    --color-brand-hover: #2xb67a; /* Un tono un poco más oscuro para el hover */
+    --color-gray-light: #e6e6e6; /* Gris para bordes/fondos */
+    --color-bg-alt: #fafafa; /* Blanco hueso para secciones alternas */
+    --color-dark: #161c28; /* Negro/Azul oscuro para textos */
+
+    /* Fuentes (Opcional, pero recomendado) */
+    --font-sans: 'Inter', system-ui, sans-serif;
+}
