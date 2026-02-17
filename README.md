@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# AutomaCo - Gestión de Facturas 📄✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AutomaCo** es una plataforma web robusta diseñada para la organización y descarga inteligente de facturas, orientada al mercado de El Salvador. Desde una landing page optimizada hasta un flujo completo de suscripción y gestión.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend:** React 18 + Vite + TypeScript (TSX)
+- **Estilos:** Tailwind CSS v4 (Configuración CSS-first)
+- **Enrutamiento:** React Router DOM (Arquitectura modular)
+- **Iconografía:** Lucide React
+- **Estado/API:** Fetch API con Service Pattern
 
-## React Compiler
+## 🛠️ Estándares y Nomenclaturas
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Para mantener la consistencia en el proyecto, seguimos estas reglas:
 
-## Expanding the ESLint configuration
+### 📂 Archivos y Carpetas
+- **Componentes:** `PascalCase.tsx` (Ej: `PricingCard.tsx`)
+- **Páginas:** `camelCase` dentro de carpetas (Ej: `pages/auth/register.tsx`)
+- **Servicios/Hooks:** `camelCase.ts` (Ej: `apiService.ts`)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ⌨️ Código y Métodos
+- **Componentes Funcionales:** Definidos como `export const Nombre = () => { ... }`.
+- **Interfaces (TS):** Localizadas en el mismo archivo del componente o en `src/types`.
+- **Peticiones API:** Uso del wrapper genérico `apiRequest<T>` para tipado estricto de respuestas.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📂 Estructura del Proyecto
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── assets/         # Ilustraciones y recursos visuales.
+├── components/     # Componentes reutilizables de UI.
+│   ├── common/     # Layouts compartidos (Navbar, Footer).
+│   └── home/       # Componentes específicos de la Landing.
+├── pages/          # Vistas de la aplicación (Home, Auth, About).
+├── routes/         # Configuración centralizada de rutas (AppRoutes.tsx).
+├── services/       # Lógica de comunicación con el backend (Laravel).
+└── styles/         # Variables de Tailwind v4 y CSS global.
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Convención de mensajes de commit
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Se utilizará el siguiente formato:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+<emoji> <tipo>(<alcance>): <verbo en infinitivo> <descripción breve>
+```
+
+Donde:
+
+- **emoji**: representa visualmente el tipo de cambio.
+- **tipo**: indica la naturaleza del commit (`feat`, `fix`, `docs`, `refactor`, `chore`).
+- **alcance** (opcional): módulo o funcionalidad afectada.
+- **verbo en infinitivo**: describe la acción realizada (agregar, corregir, actualizar, mejorar, etc.).
+
+
+## ⚙️ Instalación
+
+1. Clonar: `git clone https://github.com/tu-usuario/automaco.git`
+2. Instalar: `npm install`
+3. Correr: `npm run dev`
+
 ```
