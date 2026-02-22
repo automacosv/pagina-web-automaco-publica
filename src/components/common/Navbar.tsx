@@ -1,11 +1,22 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react'; 
 
 const Navbar = () => {
-    return (
-        <nav className="flex items-center justify-between px-12 py-6 bg-white shadow-sm">
-            <div className="text-2xl font-bold text-black">AutomaCo</div>
+    // Estado para controlar si el menú móvil está abierto o cerrado
+    const [isOpen, setIsOpen] = useState(false);
 
-            <div className="flex items-center gap-8">
+    const toggleMenu = () => setIsOpen(!isOpen);
+
+    return (
+        // Se agregó 'relative' y 'z-50' para que el menú desplegable quede por encima de todo
+        <nav className="relative flex items-center justify-between px-6 md:px-12 py-6 bg-white shadow-sm z-50">
+            
+            {/* Logo */}
+            <div className="text-2xl font-bold text-dark">AutomaCo</div>
+
+            {/* ENLACES DE ESCRITORIO (Se ocultan en móvil con 'hidden md:flex') */}
+            <div className="hidden md:flex items-center gap-8">
                 <Link to="/nosotros" className="text-gray-700 hover:text-brand transition-colors">Acerca de</Link>
                 <Link to="/contacto" className="text-gray-700 hover:text-brand transition-colors">Contáctanos</Link>
                 <Link
@@ -15,6 +26,43 @@ const Navbar = () => {
                     Iniciar sesión
                 </Link>
             </div>
+
+            {/* BOTÓN HAMBURGUESA MÓVIL (Se oculta en escritorio con 'md:hidden') */}
+            <div className="md:hidden flex items-center">
+                <button 
+                    onClick={toggleMenu} 
+                    className="text-gray-700 hover:text-brand transition-colors focus:outline-none cursor-pointer"
+                >
+                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                </button>
+            </div>
+
+            {/* MENÚ DESPLEGABLE MÓVIL */}
+            {isOpen && (
+                <div className="absolute top-full left-0 w-full bg-white shadow-lg flex flex-col items-center py-8 gap-6 md:hidden border-t border-gray-100">
+                    <Link 
+                        to="/nosotros" 
+                        onClick={toggleMenu} 
+                        className="text-gray-700 hover:text-brand transition-colors text-lg font-medium"
+                    >
+                        Acerca de
+                    </Link>
+                    <Link 
+                        to="/contacto" 
+                        onClick={toggleMenu} 
+                        className="text-gray-700 hover:text-brand transition-colors text-lg font-medium"
+                    >
+                        Contáctanos
+                    </Link>
+                    <Link
+                        to="/login"
+                        onClick={toggleMenu}
+                        className="bg-brand text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all text-lg w-10/12 text-center"
+                    >
+                        Iniciar sesión
+                    </Link>
+                </div>
+            )}
         </nav>
     );
 };
