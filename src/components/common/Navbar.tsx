@@ -13,17 +13,17 @@ const Navbar = () => {
         <nav className="relative flex items-center justify-between px-6 md:px-12 py-6 bg-white shadow-sm z-50">
             
             {/* Logo */}
-            <div className="text-2xl font-bold text-dark">AutomaCo</div>
+            <Link to="/" className="text-2xl font-bold text-dark">AutomaCo</Link>
 
             {/* ENLACES DE ESCRITORIO (Se ocultan en móvil con 'hidden md:flex') */}
             <div className="hidden md:flex items-center gap-8">
                 <Link to="/nosotros" className="text-gray-700 hover:text-brand transition-colors">Acerca de</Link>
                 <Link to="/contacto" className="text-gray-700 hover:text-brand transition-colors">Contáctanos</Link>
                 <Link
-                    to="/login"
+                    to="/checkout"
                     className="bg-brand text-white px-6 py-2 rounded-xl font-medium hover:bg-brand-dark transition-all"
                 >
-                    Iniciar sesión
+                    Compra ya
                 </Link>
             </div>
 
@@ -55,11 +55,11 @@ const Navbar = () => {
                         Contáctanos
                     </Link>
                     <Link
-                        to="/login"
+                        to="/checkout"
                         onClick={toggleMenu}
                         className="bg-brand text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all text-lg w-10/12 text-center"
                     >
-                        Iniciar sesión
+                        Compra ya
                     </Link>
                 </div>
             )}
