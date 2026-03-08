@@ -17,8 +17,11 @@ const Footer = () => {
                 {/* Columna 2: Navegación Principal */}
                 <div className="flex flex-col gap-3 opacity-90">
                     <p className="font-semibold text-lg mb-1">Empresa</p>
-                    <Link to="/nosotros" className="text-sm hover:underline hover:opacity-100 transition-all w-fit">
-                        Acerca de y contáctanos
+                    <Link to="/nosotros#nosotros" className="text-sm hover:underline hover:opacity-100 transition-all w-fit">
+                        Acerca de
+                    </Link>
+                    <Link to="/nosotros#contacto" className="text-sm hover:underline hover:opacity-100 transition-all w-fit">
+                        Contáctanos
                     </Link>
                 </div>
 

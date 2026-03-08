@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { User, Mail, Send, MessageSquare } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { Input } from '../components/common/Input';
 import { Button } from '../components/common/Button';
 import AboutImg from '../assets/about.svg'; 
+import { useLocation } from 'react-router-dom';
 
 export const About = () => {
+    const { hash } = useLocation();
+
+    useEffect(() => {
+        if (hash) {
+            const element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            window.scrollTo(0, 0);
+        }
+    }, [hash]);
+
     // Estado para el formulario de contacto
     const [formData, setFormData] = useState({
         name: '',
@@ -55,7 +69,7 @@ export const About = () => {
         <div className="w-full bg-white">
 
             {/* 1. Sección Hero: Acerca de y Quiénes Somos */}
-            <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 flex flex-col md:flex-row items-center gap-16">
+            <section id="nosotros" className="max-w-7xl mx-auto px-6 md:px-12 py-20 flex flex-col md:flex-row items-center gap-16 scroll-mt-20">
                 <div className="md:w-1/2">
                     <h1 className="text-4xl md:text-5xl font-bold text-dark mb-6">Acerca de AutomaCo</h1>
                     <p className="text-gray-500 mb-10 leading-relaxed">
@@ -91,7 +105,7 @@ export const About = () => {
             </section>
 
             {/* 3. Sección Formulario de Contacto */}
-            <section className="max-w-3xl mx-auto px-6 md:px-12 py-24">
+            <section id="contacto" className="max-w-3xl mx-auto px-6 md:px-12 py-24 scroll-mt-20">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-dark mb-4">Contáctanos</h2>
                     <p className="text-gray-500">

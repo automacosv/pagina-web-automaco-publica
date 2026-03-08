@@ -1,12 +1,24 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react'; 
 
 const Navbar = () => {
     // Estado para controlar si el menú móvil está abierto o cerrado
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
 
     const toggleMenu = () => setIsOpen(!isOpen);
+
+    const handleScrollLink = (hash: string) => {
+        // Si estamos en la página /nosotros, hacemos scroll manual
+        if (location.pathname === '/nosotros') {
+            const element = document.querySelector(hash);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        setIsOpen(false); // Cerramos menú móvil si está abierto
+    };
 
     return (
         // Se agregó 'relative' y 'z-50' para que el menú desplegable quede por encima de todo
@@ -17,13 +29,21 @@ const Navbar = () => {
 
             {/* ENLACES DE ESCRITORIO (Se ocultan en móvil con 'hidden md:flex') */}
             <div className="hidden md:flex items-center gap-8">
-                <Link to="/nosotros" className="text-gray-700 hover:text-brand transition-colors">Acerca de</Link>
-                <Link to="/contacto" className="text-gray-700 hover:text-brand transition-colors">Contáctanos</Link>
+                <Link 
+                    to="/nosotros#nosotros" 
+                    onClick={() => handleScrollLink('#nosotros')}
+                    className="text-gray-700 hover:text-brand transition-colors cursor-pointer"
+                >Acerca de</Link>
+                <Link 
+                    to="/nosotros#contacto" 
+                    onClick={() => handleScrollLink('#contacto')}
+                    className="text-gray-700 hover:text-brand transition-colors cursor-pointer"
+                >Contáctanos</Link>
                 <Link
-                    to="/checkout"
+                    to="/login"
                     className="bg-brand text-white px-6 py-2 rounded-xl font-medium hover:bg-brand-dark transition-all"
                 >
-                    Compra ya
+                    Iniciar sesión
                 </Link>
             </div>
 
@@ -41,25 +61,25 @@ const Navbar = () => {
             {isOpen && (
                 <div className="absolute top-full left-0 w-full bg-white shadow-lg flex flex-col items-center py-8 gap-6 md:hidden border-t border-gray-100">
                     <Link 
-                        to="/nosotros" 
-                        onClick={toggleMenu} 
+                        to="/nosotros#nosotros" 
+                        onClick={() => handleScrollLink('#nosotros')} 
                         className="text-gray-700 hover:text-brand transition-colors text-lg font-medium"
                     >
                         Acerca de
                     </Link>
                     <Link 
-                        to="/contacto" 
-                        onClick={toggleMenu} 
+                        to="/nosotros#contacto" 
+                        onClick={() => handleScrollLink('#contacto')} 
                         className="text-gray-700 hover:text-brand transition-colors text-lg font-medium"
                     >
                         Contáctanos
                     </Link>
                     <Link
-                        to="/checkout"
+                        to="/login"
                         onClick={toggleMenu}
                         className="bg-brand text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-dark transition-all text-lg w-10/12 text-center"
                     >
-                        Compra ya
+                        Iniciar sesión
                     </Link>
                 </div>
             )}

@@ -1,12 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 // Importación de Páginas
-import { Home } from '../pages/Home';
-import { About } from '../pages/About';
-import { PaymentPage } from '../pages/checkout/payment';
-import { Success } from '../pages/checkout/success';
-import { Legal } from '../pages/Legal';
-import { NotFound } from '../pages/NotFound';
+import { Home, About, PaymentPage, Success, Legal, NotFound, Login, Register, ForgotPassword, ResetPassword } from '../pages';
 
 export const AppRoutes: React.FC = () => {
     return (
@@ -16,6 +11,10 @@ export const AppRoutes: React.FC = () => {
             <Route path="/checkout" element={<PaymentPage />} />
             <Route path="/checkout/success" element={<Success />} />
             <Route path="/legal" element={<Legal />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/registro" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
 
             {/* Ruta 404 opcional */}
             <Route path="*" element={<NotFound />} />
