@@ -5,26 +5,27 @@ import toast from 'react-hot-toast';
 import { Button } from '../../components/common/Button';
 import { Input } from '../../components/common/Input';
 import loginImg from '../../assets/login-svg.svg'; 
+import { apiRequest } from '../../services/apiService';
 
+// Interfaz para la respuesta esperada de Laravel
+export interface LoginResponse {
+    mensage: string; 
+    access_token: string;
+    token_type: string;
+    user: any;
+}
 export const Login = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
+    const [formData, setFormData] = useState({ email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        // Validación básica visual
         if (!formData.email || !formData.password) {
             toast.error('Por favor, completa todos los campos.');
             return;
@@ -33,21 +34,23 @@ export const Login = () => {
         setIsLoading(true);
 
         try {
-            // const response = await apiRequest('/login', { method: 'POST', body: formData });
-            // localStorage.setItem('token', response.token);
+            const response = await apiRequest<LoginResponse>('/login', { 
+                method: 'POST', 
+                body: formData 
+            });
             
-            // Simulamos una espera de red por ahora
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            // Guardar el token
+            localStorage.setItem('token', response.access_token);
+            localStorage.setItem('user', JSON.stringify(response.user));
             
-            // Alerta de éxito profesional
+            // Avisar a la aplicación que el estado de autenticación cambió
+            window.dispatchEvent(new Event('auth-change'));
+            
             toast.success('¡Bienvenido de vuelta a AutomaCo!');
-            
-            // Redirigir
             navigate('/');
             
-        } catch (error) {
-            toast.error('Credenciales incorrectas. Intenta nuevamente.');
-            console.error(error);
+        } catch (error: any) {
+            toast.error(error.message || 'Credenciales incorrectas.');
         } finally {
             setIsLoading(false);
         }

@@ -1,7 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 
 // Importación de Páginas
-import { Home, About, PaymentPage, Success, Legal, NotFound, Login, Register, ForgotPassword, ResetPassword } from '../pages';
+import {
+    Home, About, PaymentPage, Success, Legal, NotFound, Login,
+    Register, ForgotPassword, ResetPassword, Profile
+} from '../pages';
 
 export const AppRoutes: React.FC = () => {
     return (
@@ -15,6 +18,7 @@ export const AppRoutes: React.FC = () => {
             <Route path="/registro" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/perfil" element={<Profile />} />
 
             {/* Ruta 404 opcional */}
             <Route path="*" element={<NotFound />} />

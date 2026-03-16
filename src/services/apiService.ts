@@ -1,4 +1,3 @@
-// Definimos los métodos permitidos
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 interface RequestOptions {
@@ -8,16 +7,22 @@ interface RequestOptions {
     headers?: Record<string, string>;
 }
 
-const BASE_URL = 'http://tu-backend-laravel.test/api'; // Cambia esto por tu URL de desarrollo
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 export const apiRequest = async <T>(endpoint: string, options: RequestOptions): Promise<T> => {
     const { method, body, headers } = options;
+    
+    // Obtenemos el token almacenado
+    const token = localStorage.getItem('token');
 
+     // Construcción de la configuración fetch
     const config: RequestInit = {
         method,
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            // Solo ponemos Content-Type si hay body y no es FormData
+            ...(body && !(body instanceof FormData) ? { "Content-Type": "application/json" } : {}),
+            "Accept": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
             ...headers,
         },
     };
