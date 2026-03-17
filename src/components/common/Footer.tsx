@@ -5,10 +5,14 @@ const Footer = () => {
         // Se cambió a px-6 para móviles y md:px-12 para escritorio
         <footer className="bg-brand px-6 md:px-12 py-12 md:py-16 mt-10 md:mt-20">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-12 text-white">
-                
+
                 {/* Columna 1: Logo y pequeña descripción */}
-                <div className="md:col-span-2 flex flex-col gap-4">
-                    <h2 className="text-3xl font-bold">AutomaCo</h2>
+                <div className="md:col-span-2 flex flex-col gap-4 items-start">
+                    <img
+                        src="/Logo_header.svg"
+                        alt="AutomaCo"
+                        className="h-6 md:h-8 lg:h-12 w-auto object-left"
+                    />
                     <p className="text-sm opacity-90 max-w-sm leading-relaxed">
                         Tu herramienta integral para la organización y descarga inteligente de Documentos Tributarios Electrónicos.
                     </p>
