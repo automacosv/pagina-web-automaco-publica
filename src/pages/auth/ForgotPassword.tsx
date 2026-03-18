@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { Mail, KeyRound, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
-// Importación de componentes reutilizables
-// Asegúrate de que las rutas sean correctas según tu estructura
 import { Input } from '../../components/common/Input';
 import { Button } from '../../components/common/Button';
+import { apiRequest } from '../../services/apiService';
 
 export const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -24,14 +23,16 @@ export const ForgotPassword = () => {
         setIsLoading(true);
 
         try {
-            // Simulamos la petición a la API (Aquí conectarás con Laravel más adelante)
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            await apiRequest('/public/forgot-password', { 
+                method: 'POST', 
+                body: { email } 
+            });
 
             setIsSubmitted(true);
             toast.success("Enlace enviado correctamente.");
 
-        } catch (error) {
-            toast.error("No pudimos procesar tu solicitud. Intenta nuevamente.");
+        } catch (error: any) {
+            toast.error("No encontramos ninguna cuenta registrada con este correo electrónico.");
             console.error(error);
         } finally {
             setIsLoading(false);
@@ -40,11 +41,9 @@ export const ForgotPassword = () => {
 
     return (
         <div className="min-h-[calc(100vh-80px)] bg-bg-alt flex items-center justify-center px-4 py-12">
-
             <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 max-w-md w-full text-center transition-all duration-500">
-
+                
                 {!isSubmitted ? (
-                    /* --- VISTA FORMULARIO --- */
                     <div className="animate-fade-in">
                         <div className="flex justify-center mb-6">
                             <div className="bg-brand/10 p-4 rounded-full ring-4 ring-brand/5">
@@ -84,7 +83,6 @@ export const ForgotPassword = () => {
                         </form>
                     </div>
                 ) : (
-                    /* --- VISTA ÉXITO --- */
                     <div className="animate-fade-in-up">
                         <div className="flex justify-center mb-6">
                             <div className="bg-green-50 p-4 rounded-full ring-4 ring-green-50/50">
@@ -118,7 +116,6 @@ export const ForgotPassword = () => {
                     </div>
                 )}
 
-                {/* Pie de tarjeta */}
                 <div className="mt-8 pt-6 border-t border-gray-100">
                     <Link
                         to="/login"
