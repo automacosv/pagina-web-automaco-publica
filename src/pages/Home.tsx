@@ -1,30 +1,7 @@
 import { PricingCard } from '../components/home/PricingCard';
 import { Button } from '../components/common/Button';
-import HomeImg from '../assets/home.jpg';
-import { CloudDownload, Mic, TrendingUp, Scale } from 'lucide-react';
-
-const features = [
-    {
-        title: 'Descarga masiva',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        icon: <CloudDownload className="text-brand w-6 h-6" />
-    },
-    {
-        title: 'Herramienta de voz',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        icon: <Mic className="text-brand w-6 h-6" />
-    },
-    {
-        title: 'Inversión a corto plazo',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        icon: <TrendingUp className="text-brand w-6 h-6" />
-    },
-    {
-        title: 'Inversión costo-plazo',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        icon: <Scale className="text-brand w-6 h-6" />
-    }
-];
+import { Background } from '../components/common/Background';
+import imageFrame from '../assets/Frame_Automaco.svg';
 
 const plans = [
     { title: 'Básico', price: 12, features: ['Límite de facturas: 100', 'Soporte por email'] },
@@ -34,59 +11,63 @@ const plans = [
 
 export const Home = () => {
     return (
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
             {/* Hero Section */}
-            <section className="px-6 md:px-12 py-20 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto">
-                <div className="md:w-1/2 mb-10 md:mb-0">
-                    <h1 className="text-5xl font-bold text-dark leading-tight mb-6">
-                        Conoce <span className="text-brand">AutomaCo</span>, tu herramienta de organización.
-                    </h1>
-                    <p className="text-gray-500 mb-8 max-w-md text-lg">
-                        Optimiza tus procesos administrativos con nuestra tecnología.
-                    </p>
-
-                    {/* Botón Arreglado */}
-                    <div className="flex gap-4">
-                        <Button onClick={() => console.log('Click!')}>
-                            Aprende más
-                        </Button>
-                    </div>
-                </div>
-                <div className="md:w-1/2 flex justify-end">
-                    <img src={HomeImg} alt="Ilustración AutomaCo" className="w-full max-w-md" />
-                </div>
-            </section>
-
-            {/* Feature Section */}
-            <section className="bg-gray-50 py-20 px-12">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold mb-2">
-                        Cómo <span className="text-brand">AutomaCo</span> resuelve tus problemas de facturas.
-                    </h2>
-                    <p className="text-gray-400 mb-12">Permítenos apoyarte con lo que nosotros sabemos hacer por ti.</p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                        {features.map((f, i) => (
-                            <div key={i} className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                                <div className="bg-gray-100 w-12 h-12 rounded-full mb-6 flex items-center justify-center">
-                                    {f.icon}
-                                </div>
-                                <h4 className="font-bold mb-3">{f.title}</h4>
-                                <p className="text-xs text-gray-500 leading-relaxed">{f.description}</p>
+            <Background fullScreen={false}>
+                <section className="relative w-full min-h-screen flex items-center justify-center px-6 md:px-12 bg-cover bg-center bg-no-repeat">
+                    <div className="max-w-7xl mx-auto flex flex-col items-center justify-center w-full py-20 text-center">
+                        <div className="flex flex-col items-center justify-center w-full mb-5 md:mb-0">
+                            <h3 className="text-3xl font-bold text-brand leading-tight">
+                                Multiplica la
+                            </h3>
+                            <h1 className="text-[4rem] sm:text-[5rem] md:text-[8rem] lg:text-[11rem] italic font-bold-italic text-brand leading-tight mb-4">
+                                Productividad
+                            </h1>
+                            <p className="text-brand mb-8 max-w-lg text-lg text-center">
+                                Olvídate del trabajo manual. AutomaCo procesa, organiza y gestiona tus facturas electrónicas
+                            </p>
+                            <div className="flex justify-center gap-4 w-full">
+                                <Button onClick={() => console.log('Click!')}>
+                                    Conocer más
+                                </Button>
                             </div>
-                        ))}
+                        </div>
                     </div>
-                </div>
-            </section>
-
-            {/* Pricing Section - CORREGIDA */}
-            <section className="py-24 px-12 text-center bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-4xl font-bold mb-4">El mejor servicio a un precio aún mejor.</h2>
+                </section>
+            </Background>
+            {/* Feature Section */}
+            <Background gradientVariant="white">
+                <section className="w-full min-h-screen flex items-center justify-center px-6 md:px-16 lg:px-24 py-20">
+                   
+                    <div className="max-w-screen-2xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                        {/* Columna de Texto: Pegada a la izquierda */}
+                        <div className="flex flex-col items-start w-full text-left">
+                            <h2 className="text-4xl md:text-5xl lg:text-[5rem] font-normal text-white italic leading-none mb-2 drop-shadow-sm">
+                                ¿Qué es?
+                            </h2>
+                            <h1 className="text-6xl md:text-[6rem] lg:text-[7.5rem] font-bold italic text-white leading-none mb-8 lg:mb-12 drop-shadow-lg tracking-tight">
+                                AutomaCo
+                            </h1>                           
+                            <p className="text-white text-lg md:text-xl lg:text-xl italic max-w-xl leading-relaxed font-normal">
+                                AutomaCo es el software inteligente que automatiza la recepción, extracción y organización de tus facturas electrónicas. Menos trabajo manual, más control para tu negocio.
+                            </p>
+                        </div>
+                        {/* Columna de Imagen: A la derecha */}
+                        <div className="w-full lg:max-w-2xl ml-auto aspect-video lg:aspect-[4/3] relative flex items-center justify-center bg-white/5 backdrop-blur-sm border-2 border-dashed border-white/30 rounded-3xl overflow-hidden group hover:bg-white/10 transition-colors duration-300 shadow-xl">
+                            <div className="text-center p-1">
+                               <img src={imageFrame} alt="AutomaCo" />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </Background>
+            {/* Pricing Section */}
+            <section className="w-full min-h-screen flex items-center justify-center bg-white px-6 md:px-12 py-20 text-center">
+                <div className="max-w-7xl mx-auto w-full">
+                    <h2 className="text-4xl font-bold mb-4 text-dark">El mejor servicio a un precio aún mejor.</h2>
                     <p className="text-gray-500 mb-16">Selecciona el plan que mejor se adapte a tus necesidades.</p>
 
-                    {/* Eliminado el doble grid innecesario */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                         {plans.map((plan, index) => (
                             <PricingCard key={index} {...plan} />
                         ))}
