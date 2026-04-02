@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
+import logoFooder from '../../../public/Logo_footer.svg';
 
 const Footer = () => {
     return (
         // Se cambió a px-6 para móviles y md:px-12 para escritorio
-        <footer className="bg-brand px-6 md:px-12 py-12 md:py-16 mt-10 md:mt-20">
+        <footer className="bg-blue-dark px-6 md:px-12 py-12 md:py-16 mt-10 md:mt-20">
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-12 text-white">
 
                 {/* Columna 1: Logo y pequeña descripción */}
                 <div className="md:col-span-2 flex flex-col gap-4 items-start">
                     <img
-                        src="/Logo_header.svg"
+                        src={logoFooder}
                         alt="AutomaCo"
                         className="h-6 md:h-8 lg:h-12 w-auto object-left"
                     />
@@ -51,7 +52,7 @@ const Footer = () => {
             </div>
 
             {/* Copyright dinámico al final */}
-            <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/20 text-center text-sm opacity-80">
+            <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-white/20 text-center text-sm text-white">
                 &copy; {new Date().getFullYear()} AutomaCo. Todos los derechos reservados.
             </div>
         </footer>

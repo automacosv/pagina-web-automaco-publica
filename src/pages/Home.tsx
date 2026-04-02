@@ -4,9 +4,55 @@ import { Background } from '../components/common/Background';
 import imageFrame from '../assets/Frame_Automaco.svg';
 
 const plans = [
-    { title: 'Básico', price: 12, features: ['Límite de facturas: 100', 'Soporte por email'] },
-    { title: 'Pro', price: 15, features: ['Límite de facturas: 500', 'Soporte 24/7', 'Reportes PDF'], isPopular: true },
-    { title: 'Premium', price: 20, features: ['Facturas ilimitadas', 'API Access', 'Múltiples usuarios'] }
+    { 
+        title: 'Básico', 
+        description: 'Ideal para empezar y conocer AutomaCo',
+        price: '15',
+        priceInterval: '/ mensual',
+        features: [
+            'Privacidad de datos.', 
+            'Una código de activación.', 
+            'Una cuenta de correo vinculada (Google/ Outlook).',
+            'Límite en la cantidad de facturas electrónicas recolectadas.',
+            'Descarga de correos limitados.'
+        ],
+        buttonText: 'Escoger plan',
+        buttonTheme: 'dark' as const
+    },
+    { 
+        title: 'Pro', 
+        description: 'Sí Recibes múltiples facturas, este plan es ideal para tí',
+        price: '35',
+        priceInterval: '/ mensual',
+        features: [
+            'Privacidad de datos', 
+            '2 Códigos de activación.', 
+            '3 cuentas de correo vinculadas (Google/ Outlook).',
+            'Recopilacion de facturas electrónicas ilimitadas.',
+            'Exportación de correos masiva.',
+            'Soporte técnico 24/7'
+        ],
+        isPopular: true,
+        badge: 'Plan ideal',
+        buttonText: 'Escoger plan',
+        buttonTheme: 'brand' as const
+    },
+    { 
+        title: 'Empresa', 
+        description: '¿Procesas miles de facturas electrónicas? Contactanos',
+        price: 'Contactar con ventas',
+        priceInterval: '',
+        features: [
+            'Privacidad de datos', 
+            'Códigos de activación.', 
+            '3 cuentas de correo vinculadas (Google/ Outlook) por cuenta.',
+            'Recopilacion de facturas electrónicas ilimitadas.',
+            'Exportación de correos masiva.',
+            'Soporte técnico 24/7'
+        ],
+        buttonText: 'Contactar con ventas',
+        buttonTheme: 'dark' as const
+    }
 ];
 
 export const Home = () => {
@@ -62,12 +108,21 @@ export const Home = () => {
                 </section>
             </Background>
             {/* Pricing Section */}
-            <section className="w-full min-h-screen flex items-center justify-center bg-white px-6 md:px-12 py-20 text-center">
-                <div className="max-w-7xl mx-auto w-full">
-                    <h2 className="text-4xl font-bold mb-4 text-dark">El mejor servicio a un precio aún mejor.</h2>
-                    <p className="text-gray-500 mb-16">Selecciona el plan que mejor se adapte a tus necesidades.</p>
+            <section className="relative w-full min-h-screen py-20 flex items-center justify-center bg-white px-6 md:px-12 text-center overflow-hidden">
+                {/* Glow Background */}
+                <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-full max-h-[800px] bg-brand/10 blur-[130px] rounded-full pointer-events-none" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                <div className="relative max-w-[1200px] mx-auto w-full z-10">
+                    <div className="mb-14 lg:mb-16">
+                        <h2 className="text-2xl md:text-[2rem] font-bold italic text-dark mb-1">
+                            Precios <span className="text-brand">flexibles</span>
+                        </h2>
+                        <h1 className="text-[4rem] md:text-[5rem] font-light italic text-brand tracking-tight leading-tight">
+                            Escoge tu plan
+                        </h1>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch mx-auto w-full">
                         {plans.map((plan, index) => (
                             <PricingCard key={index} {...plan} />
                         ))}
